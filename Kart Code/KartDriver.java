@@ -9,16 +9,20 @@ public class KartDriver {
         accelConst = accelerationConstant/10000000;
     }
 
-    public float output;
 
-    public void accel(float input, ElapsedTime runtime){
+    public float accel(float input, ElapsedTime runtime){
+
+    float output;
 
     isAccelerating = (input == 0.0);
 
     if (isAccelerating) {
-        output = (output + runtime.seconds() * accelConst * input);
+        output = Range.clip((output + runtime.seconds() * accelConst * input), -1.0, 1.0);
     } else {
         runtime.reset();
-        }
+    }
+
+    return output;
+
     }
 }
