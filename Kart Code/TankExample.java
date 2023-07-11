@@ -16,8 +16,8 @@ public class TankExample{
         yInput = gamepad1.right_trigger - gamepad1.left_trigger;
         rotInput = gamepad1.right_stick_x;
 
-        leftMotor.setPower(Range.clip(driver.accel(yInput, time) + rotInput), -1.0, 1.0);
-        rightMotor.setPower(Range.clip(driver.accel(yInput, time) - rotInput), -1.0, 1.0);
+        leftMotor.setPower(Range.clip(driver.accel(yInput, time) + rotInput), -0.4, 0.8);
+        rightMotor.setPower(Range.clip(driver.accel(yInput, time) - rotInput), -0.4, 0.8);
 
     }
 }
