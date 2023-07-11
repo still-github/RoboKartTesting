@@ -12,21 +12,18 @@ public class KartDriver {
         time = elapsedTime;
     }
 
+    public float accel(float input, ElapsedTime time){
+        float output;
+        isAccelerating = (input == 0.0);
 
-    public float accel(float input, float time){
+        if (isAccelerating && time > limK ) {
+            output = Range.clip((output + accelConst * input), -1.0, 1.0);
+            time.reset();
+        } if (!isAccelerating){
+            output = 0;
+        }
 
-    float output;
-
-    isAccelerating = (input == 0.0);
-
-    if (isAccelerating && time > limK ) {
-        output = Range.clip((output + accelConst * input), -1.0, 1.0);
-        runtime.reset;
-    } if (!isAccelerating){
-        output = 0;
-    }
-
-    return output;
+        return output;
 
     }
 }
