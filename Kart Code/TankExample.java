@@ -2,8 +2,9 @@
 
 public class TankExample{
     accelConst = 2;
-    KartDriver driver = new KartDriver(accelConst);
-    ElapsedTime time = new ElapsedTime();
+    ElapsedTime accelTime = new ElapsedTime();
+    ElapsedTime teleOpTime = new ElapsedTime(); //separate elapsedtime for teleop if needed
+    KartDriver driver = new KartDriver(accelConst, accelTime);
 
     public void loop() {
 
@@ -16,8 +17,8 @@ public class TankExample{
         yInput = gamepad1.right_trigger - gamepad1.left_trigger;
         rotInput = gamepad1.right_stick_x;
 
-        leftMotor.setPower(Range.clip(driver.accel(yInput, time) + rotInput), -0.4, 0.8);
-        rightMotor.setPower(Range.clip(driver.accel(yInput, time) - rotInput), -0.4, 0.8);
+        leftMotor.setPower(Range.clip(driver.accel(yInput) + rotInput), -0.4, 0.8);
+        rightMotor.setPower(Range.clip(driver.accel(yInput) - rotInput), -0.4, 0.8);
 
     }
 }

@@ -5,9 +5,11 @@ public class KartDriver {
     double accelConst;
     double limK = 0.01;
     private boolean isAccelerating = false;
+    ElapsedTime time;
 
-    public KartDriver(double accelerationConstant) {
+    public KartDriver(double accelerationConstant, ElapsedTime elapsedTime) {
         accelConst = accelerationConstant/100;
+        time = elapsedTime;
     }
 
 
