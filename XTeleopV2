@@ -16,12 +16,11 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 //      Red
 // yellow and green point up red and blue point right by default
 
-@TeleOp(name="XKartV2", group="Iterative Opmode")
+@TeleOp(name="PeachKart", group="Iterative Opmode")
 public class XTeleopV2 extends OpMode
 {
-    // Declare OpMode members
-    //make instances of elapsed time for acceleration and power up
-    //also bring hardware map from XHardwareMap
+
+    //bring hardware map from XHardwareMap
 
     private XHardwareMap robot = new XHardwareMap();
     ColorSensor colorSensor = null;
@@ -30,7 +29,6 @@ public class XTeleopV2 extends OpMode
     double strafe;
     double turn;
     double speed;
-    double acceleration = 0.1;
     
     //init hardware map from XHardwareMap
     @Override
@@ -69,12 +67,14 @@ public class XTeleopV2 extends OpMode
 
         //status tells us what color the bot is on
         status = robot.status(colorSensor.red(), colorSensor.green(), colorSensor.blue());
-        
+        buttonMash = robot.buttonMash(gamepad1.x || gamepad2.x || gamepad1.y || gamepad2.y);
+
         //all of this is giving the bot different drive modes based on the color (go to XHardwareMap for config of colors)
         switch(status){
         case 0:
             robot.move(forward, strafe, turn, 1);
             break;
+            robot.buttonMashReset();
         case 1:
             robot.move(forward, strafe, turn, 0.5);
             break;
@@ -85,7 +85,11 @@ public class XTeleopV2 extends OpMode
             robot.move(forward, strafe, turn, 2);
             break;
         case 4: 
-            robot.move(forward, strafe, turn + 2, 1);
+            if(buttonMash < 15){
+                robot.move(forward, strafe, 3, 1);
+            }else{
+                robot.move(forward, strafe, turn, 1);
+            }
             break;
         case 5:
             robot.move(forward, strafe, turn, 1);
