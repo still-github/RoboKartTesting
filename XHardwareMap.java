@@ -118,7 +118,7 @@ public class XHardwareMap{
             topSpeed = topSpeed + 0;
             break;
             case 1:
-            if(powerupTime.seconds() > 1 && topSpeed < 1){
+            if(powerupTime.seconds() > 1 && topSpeed > 0.3){
                 topSpeed = topSpeed - 0.05;
                 powerupTime.reset();
             }else{
