@@ -24,6 +24,7 @@ public class XHardwareMap{
     HardwareMap hwMap = null;
 
     private ElapsedTime runtime = new ElapsedTime();
+    private ElapsedTime powerupTime = new ElapsedTime();
 
     public void xDriveHardwareMap(){
     }
@@ -93,6 +94,10 @@ public class XHardwareMap{
         if((green > blue && red > blue)&& red > 300 && green > 550){
             status = 4;
         }
+        //status 5 will be lap, not sure of the colors yet
+        if((green > blue && red > blue)&& red > 300 && green > 550){
+            status = 5;
+        }
         return status;
     }
     
@@ -100,10 +105,56 @@ public class XHardwareMap{
         if(runtime.seconds() > 0.1){
             accelOutput = Range.clip(accelOutput + acceleration * input,-1,1);
             runtime.reset();
-        }if(input ==0){
+        }if(input == 0){
             accelOutput = 0;
         }
         
     return accelOutput;
     }
+    public void advancedPowerup(int status){
+        switch (status){
+            case 0:
+            topSpeed = topSpeed + 0;
+            break;
+            case 1:
+            if(powerupTime.seconds() > 1 && topSpeed < 1){
+                topSpeed = topSpeed - 0.05;
+                powerupTime.reset();
+            }else{
+                topSpeed = topSpeed - 0;
+            }
+            break;
+            case 2:
+            if(powerupTime.seconds() > 1 && sensitivity < 0.7){
+                sensitivity = sensitivity + 0.05;
+                powerupTime.reset();
+            }else{
+                sensitivity = sensitivity - 0;
+            }
+            break;
+            case 3:
+            if(powerupTime.seconds() > 1 && topSpeed < 1){
+                topSpeed = topSpeed + 0.05;
+                powerupTime.reset();
+            }else{
+                topSpeed = topSpeed - 0;
+            }
+            break;
+            case 4:
+            if(powerupTime.seconds() > 1){
+                topSpeed = 0.7;
+                sensitivity = 0.2;
+                powerupTime.reset();
+            break;
+            }
+            case 5:
+            if(powerupTime.seconds() > 1){
+                topSpeed = 0.7;
+                sensitivity = 0.2;
+                powerupTime.reset();
+            break;
+            }
+        }
+    }
+
 }
