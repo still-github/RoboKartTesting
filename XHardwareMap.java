@@ -115,30 +115,23 @@ public class XHardwareMap{
     public void advancedPowerup(int status){
         switch (status){
             case 0:
-            topSpeed = topSpeed + 0;
             break;
             case 1:
             if(powerupTime.seconds() > 1 && topSpeed > 0.3){
                 topSpeed = topSpeed - 0.05;
                 powerupTime.reset();
-            }else{
-                topSpeed = topSpeed - 0;
             }
             break;
             case 2:
             if(powerupTime.seconds() > 1 && sensitivity < 0.7){
                 sensitivity = sensitivity + 0.05;
                 powerupTime.reset();
-            }else{
-                sensitivity = sensitivity - 0;
             }
             break;
             case 3:
             if(powerupTime.seconds() > 1 && topSpeed < 1){
                 topSpeed = topSpeed + 0.05;
                 powerupTime.reset();
-            }else{
-                topSpeed = topSpeed - 0;
             }
             break;
             case 4:
