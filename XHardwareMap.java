@@ -20,7 +20,6 @@ public class XHardwareMap{
     double sensitivity = 0.2;
     double acceleration = 0.1;
     double accelOutput = 0.0;
-    int buttonMashCount = 0;
 
     HardwareMap hwMap = null;
 
@@ -150,13 +149,5 @@ public class XHardwareMap{
             }
         }
     }
-    public double buttonMash(boolean x){
-        if(x){
-        buttonMashCount = buttonMashCount +1;
-        }
-        return buttonMashCount;
-    }
-    public void buttonMashReset(){
-        buttonMashCount = 0;
-    }
+    
 }
