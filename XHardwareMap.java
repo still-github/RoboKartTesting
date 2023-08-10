@@ -95,7 +95,7 @@ public class XHardwareMap{
             status = 4;
         }
         //status 5 will be lap, not sure of the colors yet
-        if((green > blue && red > blue)&& red > 300 && green > 550){
+        if((green > blue && red > blue)&& red > 10000 && green > 100000){
             status = 5;
         }
         return status;

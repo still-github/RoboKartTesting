@@ -87,7 +87,7 @@ public class XTeleopV2 extends OpMode
             robot.move(forward, strafe, turn, 2);
             break;
         case 4:
-            robot.move(forward, strafe, 5 / bananaTime + turn, 1);
+            robot.move(forward, strafe, 5 / (bananaTime.seconds() + turn), 1);
             break;
         case 5:
             robot.move(forward, strafe, turn, 1);
